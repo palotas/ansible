@@ -1,0 +1,26 @@
+---
+- hosts: all
+  remote_user: e34
+  become: yes
+  become_method: sudo
+  tasks:
+   - name: updates a server
+     apt: update_cache=yes
+
+   - name: install git
+     apt: name=git update_cache=yes
+
+   - name: install java8
+     apt: name=openjdk-8-jdk state=latest install_recommends=no
+
+   - name: install maven3
+     apt: name=maven update_cache=yes
+
+   - name: download selenium
+     get_url: url=http://goo.gl/IHP6Qw dest=/home/e34/Downloads/selenium-standalone.jar
+
+   - name: clone git repo
+     git: repo=https://github.com/palotas/seleniumtraining.git
+          dest=/home/e34/Downloads/selenium
+   - name: install docker
+     apt: name=docker-engine update_cache=yes
