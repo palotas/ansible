@@ -57,10 +57,30 @@
      pip: name=docker-py
 
 
+   # download Dockerfile and plugins.txt from S3 and place into /home/e34/docker
+   - name: create directory "docker"
+     file: path=/home/e34/docker state=directory mode=0755
+
+   - name: download Dockerfile and plugins.txt from S3
+     get_url: url=https://s3-us-west-2.amazonaws.com/gridfusionvm/Ansible/Dockerfile dest=/home/e34/docker/Dockerfile mode=0755
+
+   - name: download plugins.txt from S3
+     get_url: url=https://s3-us-west-2.amazonaws.com/gridfusionvm/Ansible/plugins.txt dest=/home/e34/docker/plugins.txt mode=0755
+
+
+   # create job directory for cdi_unittests
+   #- name: create directory for cdi_unittests
+   #  file: path=/home/e34/jenkins_home/jobs/cdi_unittests state=directory mode=0755
+
+
+   # copy jenkins job into host directory: /home/e34/jenkins_home/jobs/cdi_unittests
+   #- name: download jenkins unit test job xml from amazon
+   #  get_url: url=https://s3-us-west-2.amazonaws.com/gridfusionvm/config.xml dest=/home/e34/jenkins_home/jobs/cdi_unittests/config.xml mode=0777
+
+
    - name: build the jenkins image from the Dockerfile
      docker_image: >
         name=e34-jenkins
-        tag=v1
         path=/home/e34/docker
         state=present
 
@@ -71,12 +91,10 @@
          state: stopped
 
 
-
    - name: start jenkins docker container
      docker:
          name: e34-jenkins
-         image: e34-jenkins:v1
+         image: e34-jenkins
          ports: "8080:8080"
          state: started
-
-
+         volumes: /home/e34/jenkins_home:/var/jenkins_home
