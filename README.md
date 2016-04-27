@@ -1,5 +1,9 @@
 # ansible
-ubuntu base image: allows for ssh access 
+ubuntu base image: allows for ssh access <br>
+port forward 2222 to 22 (SSH) & 8080 8080 (Jenkins)
+
+
+
 
 execute ansible playbook: ansible-playbook myplaybook.yml --ask-become-pass
 
