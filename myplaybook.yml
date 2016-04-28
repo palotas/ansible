@@ -4,8 +4,8 @@
   become: yes
   become_method: sudo
   tasks:
-#   - name: updates a server
-#     apt: update_cache=yes
+   - name: updates a server
+     apt: update_cache=yes
 
    - name: install git
      apt: name=git
@@ -43,9 +43,9 @@
    - name: download selenium
      get_url: url=http://goo.gl/IHP6Qw dest=/home/e34/Downloads/selenium-standalone.jar
 
-   - name: clone git repo
-     git: repo=https://github.com/palotas/seleniumtraining.git
-          dest=/home/e34/Downloads/selenium
+   #- name: clone git repo
+   #  git: repo=https://github.com/palotas/seleniumtraining.git
+   #       dest=/home/e34/Downloads/selenium
 
    - name: install docker
      apt: name=docker-engine
@@ -61,11 +61,16 @@
    - name: create directory "docker"
      file: path=/home/e34/docker state=directory mode=0755
 
-   - name: download Dockerfile and plugins.txt from S3
-     get_url: url=https://s3-us-west-2.amazonaws.com/gridfusionvm/Ansible/Dockerfile dest=/home/e34/docker/Dockerfile mode=0755
+   - name: download Dockerfile and plugins.txt from Github
+     get_url: url=https://raw.githubusercontent.com/palotas/ansible/master/docker/Dockerfile dest=/home/e34/docker/Dockerfile mode=0777
+   - name: change ownership of Dockerfile
+     file: path=/home/e34/docker/Dockerfile owner=e34 mode=0755
 
-   - name: download plugins.txt from S3
-     get_url: url=https://s3-us-west-2.amazonaws.com/gridfusionvm/Ansible/plugins.txt dest=/home/e34/docker/plugins.txt mode=0755
+
+   - name: download plugins.txt from Github
+     get_url: url=https://raw.githubusercontent.com/palotas/ansible/master/docker/plugins.txt dest=/home/e34/docker/plugins.txt mode=0777
+   - name: change ownership of plugins.txt
+     file: path=/home/e34/docker/plugins.txt owner=e34 mode=0755
 
 
    # create job directory for cdi_unittests
@@ -89,6 +94,10 @@
          name: e34-jenkins
          image: jenkins
          state: stopped
+
+
+   - name: create /home/e34/jenkins_home directory on host
+     file: path=/home/e34/jenkins_home state=directory mode=0777
 
 
    - name: start jenkins docker container
