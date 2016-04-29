@@ -9,9 +9,9 @@ add authorized key from macbook to ubuntu machine: cat ~/.ssh/id_rsa.pub | ssh u
 ansible-playbook myplaybook.yml --ask-become-pass
 
 # uninstall libre office form ubuntu machine
-sudo apt-get remove --purge libreoffice*
-sudo apt-get clean
-sudo apt-get autoremove
+sudo apt-get remove --purge libreoffice* <br>
+sudo apt-get clean <br>
+sudo apt-get autoremove <br>
 
 
 Links: 
