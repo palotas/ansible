@@ -13,6 +13,11 @@ sudo apt-get remove --purge libreoffice* <br>
 sudo apt-get clean <br>
 sudo apt-get autoremove <br>
 
+## set up IntelliJ
+go to ~/idea.../bin <br>
+execute: ./idea.sh (this starts IntelliJ) <br>
+accept license agreement, import Seleniumtraining Git project etc. <br>
+Tools -> Create Desktop Entry (create desktop entry) 
 
 Links: 
 https://opensolitude.com/2015/05/26/building-docker-images-with-ansible.html
