@@ -19,6 +19,12 @@ execute: ./idea.sh (this starts IntelliJ) <br>
 accept license agreement, import Seleniumtraining Git project etc. <br>
 Tools -> Create Desktop Entry (create desktop entry) 
 
+## install google chrome 
+wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
+sudo sh -c 'echo "deb https://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+sudo apt-get update
+sudo apt-get install google-chrome-stable
+
 Links: 
 https://opensolitude.com/2015/05/26/building-docker-images-with-ansible.html
 
