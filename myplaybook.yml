@@ -14,7 +14,8 @@
      apt: name=openjdk-8-jdk state=latest install_recommends=no
 
    - name: download IntelliJ
-     get_url: url=http://download.jetbrains.com/idea/ideaIC-2016.1.1.tar.gz dest=/home/e34/Downloads/ideaC-2016.1.1.tar.gz
+     get_url: url=http://download.jetbrains.com/idea/ideaIC-2016.2.1.tar.gz dest=/home/e34/Downloads/ideaC-2016.1.1.tar.gz
+     
 
    - name: unzip downloaded IntelliJ file
      shell: tar xfz /home/e34/Downloads/ideaC-2016.1.1.tar.gz
