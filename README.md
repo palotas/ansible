@@ -32,7 +32,10 @@ docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
 sudo docker run -p 8080:8080 -p 50000:50000 -v /home/e34/jenkins_home:/var/jenkins_home palotas/jenkins-cdi:0.1
 
 ## start Tomcat docker container
-sudo docker run -it --rm -p 8888:8080 palotas/tomcat-cdi:0.1
+sudo docker run -it --rm -p 2808:8080 --expose=8080 --name=tomcatserver palotas/tomcat7.0-cdi:0.1 
+- port 8080 needs to be exposed so the jenkins container can talk to tomcat container 
+- the IP of tomcat container is 172.17.0.2, to check run sudo docker inspect e77e0bd0344d
+
 
 ## attach to docker container 
 docker exec -it containerIdOrName bash
