@@ -29,7 +29,10 @@ sudo apt-get install google-chrome-stable
 docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
 
 ## start Jenkins docker container 
-sudo docker run -p 8080:8080 -p 50000:50000 -v /home/e34/jenkins_home:/var/jenkins_home jenkins
+sudo docker run -p 8080:8080 -p 50000:50000 -v /home/e34/jenkins_home:/var/jenkins_home palotas/jenkins-cdi:0.1
+
+## start Tomcat docker container
+sudo docker run -it --rm -p 8888:8080 palotas/tomcat-cdi:0.1
 
 ## attach to docker container 
 docker exec -it containerIdOrName bash
