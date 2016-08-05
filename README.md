@@ -31,6 +31,10 @@ docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
 ## start Jenkins docker container 
 sudo docker run -p 8080:8080 -p 50000:50000 -v /home/e34/jenkins_home:/var/jenkins_home jenkins
 
+## attach to docker container 
+docker exec -it <containerIdOrName> bash
+
+
 Links: 
 https://opensolitude.com/2015/05/26/building-docker-images-with-ansible.html
 
