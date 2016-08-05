@@ -32,7 +32,7 @@ docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
 sudo docker run -p 8080:8080 -p 50000:50000 -v /home/e34/jenkins_home:/var/jenkins_home jenkins
 
 ## attach to docker container 
-docker exec -it <containerIdOrName> bash
+docker exec -it containerIdOrName bash
 
 
 Links: 
