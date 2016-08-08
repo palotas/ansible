@@ -36,6 +36,11 @@ sudo docker run -it --rm -p 2808:8080 --expose=8080 --name=tomcatserver palotas/
 - port 8080 needs to be exposed so the jenkins container can talk to tomcat container 
 - the IP of tomcat container is 172.17.0.2, to check run sudo docker inspect e77e0bd0344d
 
+## port config
+- Jenkins: 8080
+- Tomcat: 9999
+- SonarQube: 9000
+
 
 ## attach to docker container 
 docker exec -it containerIdOrName bash
