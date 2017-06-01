@@ -1,0 +1,63 @@
+- hosts: all
+  remote_user: e34
+  become: true
+
+  tasks:
+    - name: ensure repository key is installed
+      apt_key:
+        id: "58118E89F3A912897C070ADBF76221572C52609D"
+        keyserver: "hkp://p80.pool.sks-keyservers.net:80"
+        state: present
+
+    - name: add e34 user to docker group
+      user:
+        name: e34
+        group: docker
+
+    - name: ensure docker registry is available
+      # For Ubuntu 16.04 LTS, use this repo instead:
+      apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-xenial main' state=present
+
+    - name: ensure docker and dependencies are installed
+      apt: name=docker-engine update_cache=yes
+
+    # Uncomment the following to enable insecure registries with Docker
+    #- name: ensure docker can use insecure registries in 10.11.0.0/16
+    #  lineinfile: "dest=/etc/default/docker regexp=^DOCKER_OPTS line=DOCKER_OPTS='--insecure-registry 10.11.0.0/16'"
+
+    - service: name=docker state=restarted
+
+    - name: install docker-pip
+      apt: name=python-pip
+
+    - name: install docker-py
+      pip: name=docker-py
+
+    - name: start tomcat-QA
+      docker_container:
+        image: palotas/tomcat7-cdi
+        name: tomcat-QA
+        ports: "9999:8080"
+        state: started
+
+    - name: start tomcat-PROD
+      docker_container:
+        image: palotas/tomcat7-cdi
+        ports: "9998:8080"
+        name: tomcat-PROD
+        state: started
+
+    - name: start jenkins
+      docker_container:
+        image: palotas/e34_jenkins_noadmin
+        name: jenkins
+        ports: "8080:8080"
+        volumes: /home/e34/jenkins_home:/var/jenkins_home
+        state: started
+
+    - name: start sonarqube
+      docker_container:
+        image: sonarqube
+        name: sonarqube
+        ports: "9000:9000"
+        state: started
