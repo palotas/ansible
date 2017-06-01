@@ -3,7 +3,6 @@ greenballs:1.15
 credentials
 mailer
 scm-api
-promoted-build
 token-macro
 parametrized-trigger
 git-client
