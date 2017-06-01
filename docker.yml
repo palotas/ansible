@@ -9,11 +9,6 @@
         keyserver: "hkp://p80.pool.sks-keyservers.net:80"
         state: present
 
-    - name: add e34 user to docker group
-      user:
-        name: e34
-        group: docker
-
     - name: ensure docker registry is available
       # For Ubuntu 16.04 LTS, use this repo instead:
       apt_repository: repo='deb https://apt.dockerproject.org/repo ubuntu-xenial main' state=present
@@ -61,3 +56,8 @@
         name: sonarqube
         ports: "9000:9000"
         state: started
+
+    - name: add e34 user to docker group
+      user:
+        name: e34
+        group: docker

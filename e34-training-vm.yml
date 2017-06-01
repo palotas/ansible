@@ -11,23 +11,25 @@
   - name: install java 8
     apt: name=openjdk-8-jdk state=latest install_recommends=no
 
-#  - name: download IntelliJ
-#    get_url:
-#      url: https://download.jetbrains.com/idea/ideaIC-2017.1.3.tar.gz
-#      dest: /home/e34/Downloads
-#      force: no
+  - name: download IntelliJ
+    get_url:
+      #url: https://download.jetbrains.com/idea/ideaIC-2017.1.3.tar.gz
+      url: http://192.168.1.103:80/ideaIC-2017.1.3.tar.gz
+      dest: /home/e34/Downloads
+      force: no
 
-#  - name: unzip IntelliJ
-#    unarchive:
-#      src: /home/e34/Downloads/ideaIC-2017.1.3.tar.gz
-#      dest: /home/e34/Downloads/idea
-#      remote_src: yes
+  - name: unzip IntelliJ
+    unarchive:
+      src: /home/e34/Downloads/ideaIC-2017.1.3.tar.gz
+      dest: /home/e34/Downloads
+      remote_src: yes
 
-#  - name: download jenkins_home
-#    get_url:
-#      url: https://s3.amazonaws.com/e34/jenkins_home.tar.gz
-#      dest: /home/e34/Downloads
-#      force: no
+  - name: download jenkins_home
+    get_url:
+      #url: https://s3.amazonaws.com/e34/jenkins_home.tar.gz
+      url: http://192.168.1.103:80/jenkins_home.tar.gz
+      dest: /home/e34/Downloads
+      force: no
 
   - name: unzip jenkins_home
     unarchive:

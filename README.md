@@ -4,6 +4,8 @@ port forward 2222 to 22 (SSH) & 8080 8080 (Jenkins)
 
 add authorized key from macbook to ubuntu machine: cat ~/.ssh/id_rsa.pub | ssh user@123.45.56.78 "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"
 
+## set up ssh keys so that passphrase only needs to be entered once:
+http://blog.packetdisarray.com/2015/08/06/passphrase-ssh-keys-without-repetitive-typing/
 
 # execute ansible playbook: 
 ansible-playbook myplaybook.yml --ask-become-pass
