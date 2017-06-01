@@ -77,16 +77,16 @@
     apt: name=git
 
 
-#  - name: checkout selenium training from git
-#    git:
-#      repo: https://github.com/palotas/e34seleniumtraining.git
-#      dest: /home/e34/workspace/seleniumtraining
+  - name: checkout selenium training from git
+    git:
+      repo: https://github.com/palotas/e34seleniumtraining.git
+      dest: /home/e34/workspace/seleniumtraining
 
 
-#  - name: checkout cdi training from git
-#    git:
-#      repo: https://github.com/gridfusion-trainings/cditraining.git
-#      dest: /home/e34/workspace/cditraining
+  - name: checkout cdi training from git
+    git:
+      repo: https://github.com/gridfusion-trainings/cditraining.git
+      dest: /home/e34/workspace/cditraining
 
 
   - name: change directory ownership to e34
