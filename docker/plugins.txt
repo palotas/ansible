@@ -1,11 +1,2 @@
-cobertura:1.9.7
 greenballs:1.15
-credentials
-mailer
-scm-api
-token-macro
-parametrized-trigger
-git-client
-matrix-project
-ssh-credentials
-git
+
