@@ -37,6 +37,20 @@
       dest: /home/e34/
       remote_src: yes
 
+  - name: download jobs
+    get_url:
+      #url: https://s3.amazonaws.com/e34/jobs.tar.gz
+      url: http://192.168.1.103:80/jobs.tar.gz
+      dest: /home/e34/Downloads
+      force: no
+
+  - name: unzip jobs to jenkins_home/jobs
+    unarchive:
+      src: /home/e34/Downloads/jobs.tar.gz
+      dest: /home/e34/jenkins_home
+      remote_src: yes
+
+
   - name: create needed directory
     file:
       path: /home/e34/workspace

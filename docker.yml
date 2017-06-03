@@ -44,10 +44,10 @@
 
     - name: start jenkins
       docker_container:
-        image: palotas/e34_jenkins_noadmin
+        image: palotas/e34_jenkins_noadmin:0.7
         name: jenkins
         ports: "8080:8080"
-        volumes: /home/e34/jenkins_home:/var/jenkins_home
+        volumes: /home/e34/jenkins_home/jobs:/var/jenkins_home/jobs
         state: started
 
     - name: start sonarqube
@@ -56,6 +56,7 @@
         name: sonarqube
         ports: "9000:9000"
         state: started
+
 
     - name: add e34 user to docker group
       user:
