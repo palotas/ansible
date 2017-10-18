@@ -4,6 +4,8 @@ TODO: port forward 2222 to 22 (SSH)
 
 If needed: add authorized key from macbook to ubuntu machine: ``cat ~/.ssh/id_rsa.pub | ssh e34@127.0.0.1 "mkdir -p ~/.ssh && cat >>  ~/.ssh/authorized_keys"`
 
+SSH with: ssh -p2222 e34@127.0.0.1
+
 ## set up ssh keys so that passphrase only needs to be entered once:
 http://blog.packetdisarray.com/2015/08/06/passphrase-ssh-keys-without-repetitive-typing/
 
