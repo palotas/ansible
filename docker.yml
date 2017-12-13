@@ -1,4 +1,4 @@
-- hosts: 127.0.0.1
+- hosts: training-vm
   remote_user: e34
   become: true
 
