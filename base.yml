@@ -1,0 +1,13 @@
+---
+- hosts: training-vm
+  sudo: True
+
+  vars:
+    - apt_file: /etc/apt/sources.list.d/google-chrome.list
+  tasks:
+  - name: update server
+    apt: update_cache=no
+
+  - name: install java 8
+    apt: name=openjdk-8-jdk state=latest install_recommends=no
+
