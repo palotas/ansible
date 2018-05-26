@@ -1,15 +1,47 @@
 ---
 - hosts: training-vm
   sudo: True
+
   vars:
     - apt_file: /etc/apt/sources.list.d/google-chrome.list
-  remote_user: e34
   tasks:
   - name: update server
     apt: update_cache=no
 
   - name: install java 8
     apt: name=openjdk-8-jdk state=latest install_recommends=no
+
+  - name: create Downloads directory
+    file:
+      path: /home/e34/Downloads
+      state: directory
+
+
+  - name: create idea directory
+    file:
+      path: /home/e34/Downloads/idea
+      state: directory
+
+
+
+  - name: create workspace directory
+    file:
+      path: /home/e34/workspace
+      state: directory
+
+
+  - name: create workspace directory for selenium training
+    file:
+      path: /home/e34/workspace/seleniumtraining
+      state: directory
+
+
+  - name: create workspace directory for devops training
+    file:
+      path: /home/e34/workspace/cditraining
+      state: directory
+
+
 
   - name: download IntelliJ
     get_url:
@@ -24,70 +56,36 @@
       dest: /home/e34/Downloads
       remote_src: yes
 
-  - name: download jenkins_home
-    get_url:
-      #url: https://s3.amazonaws.com/e34/jenkins_home.tar.gz
-      url:  https://element34.com/public/jenkins_home.tar.gz
-      dest: /home/e34/Downloads
-      force: no
+#  - name: download jenkins_home
+#    get_url:
+#      #url: https://s3.amazonaws.com/e34/jenkins_home.tar.gz
+#      url:  https://element34.com/public/jenkins_home.tar.gz
+#      dest: /home/e34/Downloads
+#      force: no
+#
+#  - name: unzip jenkins_home
+#    unarchive:
+#      src: /home/e34/Downloads/jenkins_home.tar.gz
+#      dest: /home/e34/
+#      remote_src: yes
+#
+#  - name: download jobs
+#    get_url:
+#      #url: https://s3.amazonaws.com/e34/jobs.tar.gz
+#      url:  https://element34.com/public/jobs.tar.gz
+#      dest: /home/e34/Downloads
+#      force: no
+#
+#  - name: unzip jobs to jenkins_home/jobs
+#    unarchive:
+#      src: /home/e34/Downloads/jobs.tar.gz
+#      dest: /home/e34/jenkins_home
+#      remote_src: yes
 
-  - name: unzip jenkins_home
-    unarchive:
-      src: /home/e34/Downloads/jenkins_home.tar.gz
-      dest: /home/e34/
-      remote_src: yes
-
-  - name: download jobs
-    get_url:
-      #url: https://s3.amazonaws.com/e34/jobs.tar.gz
-      url:  https://element34.com/public/jobs.tar.gz
-      dest: /home/e34/Downloads
-      force: no
-
-  - name: unzip jobs to jenkins_home/jobs
-    unarchive:
-      src: /home/e34/Downloads/jobs.tar.gz
-      dest: /home/e34/jenkins_home
-      remote_src: yes
-
-
-  - name: create needed directory
-    file:
-      path: /home/e34/workspace
-      state: directory
-      owner: e34
-      group: e34
-      mode: 0777
-      recurse: yes
-
-  - name: create needed directory
-    file:
-      path: /home/e34/Downloads/idea
-      state: directory
-      owner: e34
-      group: e34
-      mode: 0755
-
-  - name: create workspace directory for selenium training
-    file:
-      path: /home/e34/workspace/seleniumtraining
-      state: directory
-      owner: e34
-      mode: 0777
-
-  - name: create workspace directory for devops training
-    file:
-      path: /home/e34/workspace/cditraining
-      state: directory
-      owner: e34
-      mode: 0777
 
 
 
   - name: install git
-    become: true
-    become_user: root
-    become_method: sudo
     apt: name=git
 
 
@@ -97,10 +95,10 @@
       dest: /home/e34/workspace/seleniumtraining
 
 
-  - name: checkout cdi training from git
-    git:
-      repo: https://github.com/gridfusion-trainings/cditraining.git
-      dest: /home/e34/workspace/cditraining
+#  - name: checkout cdi training from git
+#    git:
+#      repo: https://github.com/gridfusion-trainings/cditraining.git
+#      dest: /home/e34/workspace/cditraining
 
 
   - name: change directory ownership to e34
@@ -113,13 +111,10 @@
       recurse: yes
 
   - name: install maven 3
-    become: true
-    become_user: root
-    become_method: sudo
     apt: name=maven
 
-  - name: download selenium 3.8.1
+  - name: download selenium 3.12
     get_url:
-      url: https://goo.gl/hvDPsK
+      url: https://goo.gl/tbd1NS
       dest: /home/e34/Downloads
       force: no
