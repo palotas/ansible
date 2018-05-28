@@ -16,7 +16,7 @@ SSH with: ssh -p 2222 e34@127.0.0.1
 http://blog.packetdisarray.com/2015/08/06/passphrase-ssh-keys-without-repetitive-typing/
 
 ## execute ansible playbook: 
-``ansible-playbook e34-training-vm.yml browsers.yml docker.yml --extra-vars "ansible_become_pass=111111"``
+``ansible-playbook e34-training-vm.yml browsers.yml docker.yml --extra-vars "ansible_become_pass=11"``
 
 # uninstall libre office form ubuntu machine
 ``sudo apt-get remove --purge libreoffice* 
